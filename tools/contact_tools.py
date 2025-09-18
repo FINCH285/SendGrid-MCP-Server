@@ -89,30 +89,28 @@ async def add_contact(
 
 @mcp.tool(
     name="get_contact_lists",
-    description="Retrieve all contact lists from your SendGrid account",
+    description="Retrieve all contacts from your SendGrid account",
     tags=["contacts", "sendgrid", "marketing"]
 )
 async def get_contact_lists(ctx: Context = None) -> Dict[str, Any]:
-    """Retrieve all contact lists via SendGrid API."""
+    """Retrieve all contacts via SendGrid API."""
     try:
         if ctx:
-            await ctx.info("Fetching contact lists from SendGrid")
+            await ctx.info("Fetching contacts from SendGrid")
 
         client = SendGridClient.from_context(ctx)
         result = await client.make_api_request(
             method="GET",
-            endpoint="/marketing/lists"
+            endpoint="/marketing/contacts"
         )
 
         if ctx and result.get("result"):
-            await ctx.info(f"Retrieved {len(result['result'])} contact list(s)")
+            await ctx.info(f"Retrieved {len(result['result'])} contact(s)")
 
         return result
 
     except Exception as e:
-        error_msg = f"Failed to retrieve contact lists: {str(e)}"
+        error_msg = f"Failed to retrieve contacts: {str(e)}"
         if ctx:
             await ctx.error(error_msg)
         raise RuntimeError(error_msg)
-
-
