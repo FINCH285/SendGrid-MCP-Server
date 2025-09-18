@@ -98,8 +98,9 @@ For Windows users, use paths like:
 "command": "C:\\Users\\YourUsername\\project-folder\\venv\\Scripts\\python.exe"
 "args": ["C:\\Users\\YourUsername\\project-folder\\main.py"]  
 "cwd": "C:\\Users\\YourUsername\\project-folder"
-For macOS/Linux users, use paths like:
 ```
+For macOS/Linux users, use paths like:
+
 ```json
 "command": "/Users/yourusername/project-folder/venv/bin/python"
 "args": ["/Users/yourusername/project-folder/main.py"]
@@ -118,16 +119,6 @@ Key configuration elements:
 - disabled: Set to false to enable the server
 
 - env: Contains your SendGrid API key (replace with your actual key starting with "SG.")
-
-### Add Contact
-```python
-# Via MCP client
-result = await mcp_client.call_tool("add_contact", {
-    "email": "contact@example.com",
-    "first_name": "John",
-    "last_name": "Doe"
-})
-```
 
 ## 🏗️ Architecture
 
