@@ -81,7 +81,7 @@ The server supports two authentication methods:
 {
   "mcpServers": {
     "sendgrid-mcp": {
-      "command": "/path/to/your/project/venv/Scripts/python.exe",
+      "command": "python",
       "args": ["/path/to/your/project/main.py"],
       "cwd": "/path/to/your/project",
       "disabled": false,
@@ -95,22 +95,18 @@ The server supports two authentication methods:
 For Windows users, use paths like:
 
 ```json
-"command": "C:\\Users\\YourUsername\\project-folder\\venv\\Scripts\\python.exe"
 "args": ["C:\\Users\\YourUsername\\project-folder\\main.py"]  
 "cwd": "C:\\Users\\YourUsername\\project-folder"
 ```
 For macOS/Linux users, use paths like:
 
 ```json
-"command": "/Users/yourusername/project-folder/venv/bin/python"
 "args": ["/Users/yourusername/project-folder/main.py"]
 "cwd": "/Users/yourusername/project-folder"
 ```
 Key configuration elements:
 
 - "sendgrid-mcp": The server name/identifier (customizable)
-
-- command: Points to your virtual environment's Python executable
 
 - args: Specifies the path to your main.py file
 
