@@ -68,17 +68,6 @@ The server will start and listen for MCP connections via STDIO.
 
 ## 🔧 Configuration
 
-### Environment Variables
-
-| Variable | Description | Required | Default |
-|----------|-------------|----------|---------|
-| `SENDGRID_API_KEY` | Your SendGrid API key | Yes | - |
-| `DEFAULT_FROM_EMAIL` | Default sender email (must be verified) | No | - |
-| `DEFAULT_FROM_NAME` | Default sender name | No | - |
-| `DEFAULT_TEMPLATE_ID` | Default template ID for template emails | No | - |
-| `RATE_LIMIT` | API requests per second limit | No | `10` |
-| `DEBUG` | Enable debug logging | No | `false` |
-
 ### Authentication
 
 The server supports two authentication methods:
@@ -86,18 +75,49 @@ The server supports two authentication methods:
 1. **Environment Variable**: Set `SENDGRID_API_KEY` in your `.env` file
 2. **Bearer Token**: Pass API key via Authorization header in MCP requests
 
-## 📚 API Examples
+## 📚 SendGrid Configuration example
 
-### Send Email
 ```python
-# Via MCP client
-result = await mcp_client.call_tool("send_email", {
-    "to_emails": ["recipient@example.com"],
-    "subject": "Hello from SendGrid MCP!",
-    "html_content": "<h1>Hello World!</h1>",
-    "from_email": "sender@example.com"
-})
+{
+  "mcpServers": {
+    "sendgrid-mcp": {
+      "command": "/path/to/your/project/venv/Scripts/python.exe",
+      "args": ["/path/to/your/project/main.py"],
+      "cwd": "/path/to/your/project",
+      "disabled": false,
+      "env": {
+        "SENDGRID_API_KEY": "SG.your-actual-api-key-here"
+      }
+    }
+  }
+}
 ```
+For Windows users, use paths like:
+
+```json
+"command": "C:\\Users\\YourUsername\\project-folder\\venv\\Scripts\\python.exe"
+"args": ["C:\\Users\\YourUsername\\project-folder\\main.py"]  
+"cwd": "C:\\Users\\YourUsername\\project-folder"
+For macOS/Linux users, use paths like:
+```
+```json
+"command": "/Users/yourusername/project-folder/venv/bin/python"
+"args": ["/Users/yourusername/project-folder/main.py"]
+"cwd": "/Users/yourusername/project-folder"
+```
+Key configuration elements:
+
+- "sendgrid-mcp": The server name/identifier (customizable)
+
+- command: Points to your virtual environment's Python executable
+
+- args: Specifies the path to your main.py file
+
+- cwd: Sets the working directory to your project folder
+
+- disabled: Set to false to enable the server
+
+- env: Contains your SendGrid API key (replace with your actual key starting with "SG.")
 
 ### Add Contact
 ```python
